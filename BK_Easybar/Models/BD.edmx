@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_easybarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="administrador_bar">
+          <Key>
+            <PropertyRef Name="id_admin" />
+          </Key>
+          <Property Name="id_admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="cedula_a" Type="int" Nullable="false" />
+          <Property Name="nombre_completo_a" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo_a" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Telefono_a" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="contraseña_a" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fecha_adicion_a" Type="datetime" Nullable="false" />
+          <Property Name="estado_admin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bar">
+          <Key>
+            <PropertyRef Name="id_bar" />
+          </Key>
+          <Property Name="id_bar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_admin" Type="int" Nullable="false" />
+          <Property Name="nit_bar" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre_bar" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion_bar" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Telefono_bar1" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Telefono_bar2" Type="varchar" MaxLength="15" />
+          <Property Name="Logo_bar" Type="varchar(max)" Nullable="false" />
+          <Property Name="link_washap" Type="varchar" MaxLength="300" />
+          <Property Name="link_facebook" Type="varchar" MaxLength="300" />
+          <Property Name="link_instagram" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="correo_b" Type="varchar" MaxLength="60" />
+          <Property Name="estado_bar" Type="bit" Nullable="false" />
+          <Property Name="Horario" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_adicion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="cedula" Type="int" Nullable="false" />
+          <Property Name="nombre_completo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Barrio_localidad" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fecha_adicion" Type="datetime" Nullable="false" />
+          <Property Name="estado_cliente" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pedidos">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="id_bar" Type="int" Nullable="false" />
+          <Property Name="valor_pedido" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="estado_pedido" Type="bit" Nullable="false" />
+          <Property Name="descripcion_pedido" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_bar" Type="int" Nullable="false" />
+          <Property Name="producto_especial" Type="bit" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="categoria" Type="varchar" MaxLength="60" />
+          <Property Name="descripcion_producto" Type="varchar" MaxLength="300" />
+          <Property Name="disponibilidad" Type="bit" Nullable="false" />
+          <Property Name="cantidad" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="precio" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="imagen_producto" Type="varchar(max)" />
+          <Property Name="estado_producto" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="publicidad">
+          <Key>
+            <PropertyRef Name="id_publicidad" />
+          </Key>
+          <Property Name="id_publicidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_bar" Type="int" Nullable="false" />
+          <Property Name="nombre_publicidad" Type="varchar" MaxLength="200" />
+          <Property Name="tiempo_publicidad" Type="varchar" MaxLength="200" />
+          <Property Name="Mensaje" Type="varchar" MaxLength="200" />
+          <Property Name="valor" Type="int" />
+          <Property Name="Imagen_publicidad" Type="varchar(max)" />
+          <Property Name="Estado_publicidad" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_rol" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__administr__id_ro__440B1D61">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="administrador_bar" Type="Self.administrador_bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="administrador_bar">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bar__id_admin__47DBAE45">
+          <End Role="administrador_bar" Type="Self.administrador_bar" Multiplicity="1" />
+          <End Role="bar" Type="Self.bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="administrador_bar">
+              <PropertyRef Name="id_admin" />
+            </Principal>
+            <Dependent Role="bar">
+              <PropertyRef Name="id_admin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cliente__id_rol__403A8C7D">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedidos__id_bar__52593CB8">
+          <End Role="bar" Type="Self.bar" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bar">
+              <PropertyRef Name="id_bar" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="id_bar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedidos__id_clie__5165187F">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__id_bar__4D94879B">
+          <End Role="bar" Type="Self.bar" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bar">
+              <PropertyRef Name="id_bar" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="id_bar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__publicida__id_ba__5629CD9C">
+          <End Role="bar" Type="Self.bar" Multiplicity="1" />
+          <End Role="publicidad" Type="Self.publicidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bar">
+              <PropertyRef Name="id_bar" />
+            </Principal>
+            <Dependent Role="publicidad">
+              <PropertyRef Name="id_bar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_easybarModelStoreContainer">
+          <EntitySet Name="administrador_bar" EntityType="Self.administrador_bar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bar" EntityType="Self.bar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="publicidad" EntityType="Self.publicidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__administr__id_ro__440B1D61" Association="Self.FK__administr__id_ro__440B1D61">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="administrador_bar" EntitySet="administrador_bar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bar__id_admin__47DBAE45" Association="Self.FK__bar__id_admin__47DBAE45">
+            <End Role="administrador_bar" EntitySet="administrador_bar" />
+            <End Role="bar" EntitySet="bar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cliente__id_rol__403A8C7D" Association="Self.FK__cliente__id_rol__403A8C7D">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedidos__id_bar__52593CB8" Association="Self.FK__Pedidos__id_bar__52593CB8">
+            <End Role="bar" EntitySet="bar" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedidos__id_clie__5165187F" Association="Self.FK__Pedidos__id_clie__5165187F">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__id_bar__4D94879B" Association="Self.FK__producto__id_bar__4D94879B">
+            <End Role="bar" EntitySet="bar" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__publicida__id_ba__5629CD9C" Association="Self.FK__publicida__id_ba__5629CD9C">
+            <End Role="bar" EntitySet="bar" />
+            <End Role="publicidad" EntitySet="publicidad" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_easybarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="administrador_bar">
+          <Key>
+            <PropertyRef Name="id_admin" />
+          </Key>
+          <Property Name="id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="cedula_a" Type="Int32" Nullable="false" />
+          <Property Name="nombre_completo_a" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo_a" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono_a" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña_a" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_adicion_a" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado_admin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK__administr__id_ro__440B1D61" FromRole="administrador_bar" ToRole="Rol" />
+          <NavigationProperty Name="bar" Relationship="Self.FK__bar__id_admin__47DBAE45" FromRole="administrador_bar" ToRole="bar" />
+        </EntityType>
+        <EntityType Name="bar">
+          <Key>
+            <PropertyRef Name="id_bar" />
+          </Key>
+          <Property Name="id_bar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_admin" Type="Int32" Nullable="false" />
+          <Property Name="nit_bar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_bar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion_bar" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono_bar1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono_bar2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Logo_bar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="link_washap" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="link_facebook" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="link_instagram" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo_b" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="estado_bar" Type="Boolean" Nullable="false" />
+          <Property Name="Horario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_adicion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="administrador_bar" Relationship="Self.FK__bar__id_admin__47DBAE45" FromRole="bar" ToRole="administrador_bar" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK__Pedidos__id_bar__52593CB8" FromRole="bar" ToRole="Pedidos" />
+          <NavigationProperty Name="producto" Relationship="Self.FK__producto__id_bar__4D94879B" FromRole="bar" ToRole="producto" />
+          <NavigationProperty Name="publicidad" Relationship="Self.FK__publicida__id_ba__5629CD9C" FromRole="bar" ToRole="publicidad" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="cedula" Type="Int32" Nullable="false" />
+          <Property Name="nombre_completo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Barrio_localidad" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_adicion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado_cliente" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK__cliente__id_rol__403A8C7D" FromRole="cliente" ToRole="Rol" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK__Pedidos__id_clie__5165187F" FromRole="cliente" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="Pedidos">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="id_bar" Type="Int32" Nullable="false" />
+          <Property Name="valor_pedido" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="estado_pedido" Type="Boolean" Nullable="false" />
+          <Property Name="descripcion_pedido" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="bar" Relationship="Self.FK__Pedidos__id_bar__52593CB8" FromRole="Pedidos" ToRole="bar" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__Pedidos__id_clie__5165187F" FromRole="Pedidos" ToRole="cliente" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_bar" Type="Int32" Nullable="false" />
+          <Property Name="producto_especial" Type="Boolean" />
+          <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="categoria" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_producto" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="disponibilidad" Type="Boolean" Nullable="false" />
+          <Property Name="cantidad" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagen_producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="estado_producto" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="bar" Relationship="Self.FK__producto__id_bar__4D94879B" FromRole="producto" ToRole="bar" />
+        </EntityType>
+        <EntityType Name="publicidad">
+          <Key>
+            <PropertyRef Name="id_publicidad" />
+          </Key>
+          <Property Name="id_publicidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_bar" Type="Int32" Nullable="false" />
+          <Property Name="nombre_publicidad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="tiempo_publicidad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Mensaje" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="Int32" />
+          <Property Name="Imagen_publicidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado_publicidad" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="bar" Relationship="Self.FK__publicida__id_ba__5629CD9C" FromRole="publicidad" ToRole="bar" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="administrador_bar" Relationship="Self.FK__administr__id_ro__440B1D61" FromRole="Rol" ToRole="administrador_bar" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__cliente__id_rol__403A8C7D" FromRole="Rol" ToRole="cliente" />
+        </EntityType>
+        <Association Name="FK__administr__id_ro__440B1D61">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="administrador_bar" Type="Self.administrador_bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="administrador_bar">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bar__id_admin__47DBAE45">
+          <End Role="administrador_bar" Type="Self.administrador_bar" Multiplicity="1" />
+          <End Role="bar" Type="Self.bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="administrador_bar">
+              <PropertyRef Name="id_admin" />
+            </Principal>
+            <Dependent Role="bar">
+              <PropertyRef Name="id_admin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedidos__id_bar__52593CB8">
+          <End Role="bar" Type="Self.bar" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bar">
+              <PropertyRef Name="id_bar" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="id_bar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__id_bar__4D94879B">
+          <End Role="bar" Type="Self.bar" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bar">
+              <PropertyRef Name="id_bar" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="id_bar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__publicida__id_ba__5629CD9C">
+          <End Role="bar" Type="Self.bar" Multiplicity="1" />
+          <End Role="publicidad" Type="Self.publicidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bar">
+              <PropertyRef Name="id_bar" />
+            </Principal>
+            <Dependent Role="publicidad">
+              <PropertyRef Name="id_bar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cliente__id_rol__403A8C7D">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedidos__id_clie__5165187F">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_easybarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="administrador_bar" EntityType="Self.administrador_bar" />
+          <EntitySet Name="bar" EntityType="Self.bar" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" />
+          <EntitySet Name="producto" EntityType="Self.producto" />
+          <EntitySet Name="publicidad" EntityType="Self.publicidad" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <AssociationSet Name="FK__administr__id_ro__440B1D61" Association="Self.FK__administr__id_ro__440B1D61">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="administrador_bar" EntitySet="administrador_bar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bar__id_admin__47DBAE45" Association="Self.FK__bar__id_admin__47DBAE45">
+            <End Role="administrador_bar" EntitySet="administrador_bar" />
+            <End Role="bar" EntitySet="bar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedidos__id_bar__52593CB8" Association="Self.FK__Pedidos__id_bar__52593CB8">
+            <End Role="bar" EntitySet="bar" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__id_bar__4D94879B" Association="Self.FK__producto__id_bar__4D94879B">
+            <End Role="bar" EntitySet="bar" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__publicida__id_ba__5629CD9C" Association="Self.FK__publicida__id_ba__5629CD9C">
+            <End Role="bar" EntitySet="bar" />
+            <End Role="publicidad" EntitySet="publicidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cliente__id_rol__403A8C7D" Association="Self.FK__cliente__id_rol__403A8C7D">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedidos__id_clie__5165187F" Association="Self.FK__Pedidos__id_clie__5165187F">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_easybarModelStoreContainer" CdmEntityContainer="db_easybarEntities">
+          <EntitySetMapping Name="administrador_bar">
+            <EntityTypeMapping TypeName="db_easybarModel.administrador_bar">
+              <MappingFragment StoreEntitySet="administrador_bar">
+                <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="cedula_a" ColumnName="cedula_a" />
+                <ScalarProperty Name="nombre_completo_a" ColumnName="nombre_completo_a" />
+                <ScalarProperty Name="correo_a" ColumnName="correo_a" />
+                <ScalarProperty Name="Telefono_a" ColumnName="Telefono_a" />
+                <ScalarProperty Name="contraseña_a" ColumnName="contraseña_a" />
+                <ScalarProperty Name="fecha_adicion_a" ColumnName="fecha_adicion_a" />
+                <ScalarProperty Name="estado_admin" ColumnName="estado_admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bar">
+            <EntityTypeMapping TypeName="db_easybarModel.bar">
+              <MappingFragment StoreEntitySet="bar">
+                <ScalarProperty Name="id_bar" ColumnName="id_bar" />
+                <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+                <ScalarProperty Name="nit_bar" ColumnName="nit_bar" />
+                <ScalarProperty Name="nombre_bar" ColumnName="nombre_bar" />
+                <ScalarProperty Name="Direccion_bar" ColumnName="Direccion_bar" />
+                <ScalarProperty Name="Telefono_bar1" ColumnName="Telefono_bar1" />
+                <ScalarProperty Name="Telefono_bar2" ColumnName="Telefono_bar2" />
+                <ScalarProperty Name="Logo_bar" ColumnName="Logo_bar" />
+                <ScalarProperty Name="link_washap" ColumnName="link_washap" />
+                <ScalarProperty Name="link_facebook" ColumnName="link_facebook" />
+                <ScalarProperty Name="link_instagram" ColumnName="link_instagram" />
+                <ScalarProperty Name="correo_b" ColumnName="correo_b" />
+                <ScalarProperty Name="estado_bar" ColumnName="estado_bar" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="fecha_adicion" ColumnName="fecha_adicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="db_easybarModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="Barrio_localidad" ColumnName="Barrio_localidad" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="fecha_adicion" ColumnName="fecha_adicion" />
+                <ScalarProperty Name="estado_cliente" ColumnName="estado_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedidos">
+            <EntityTypeMapping TypeName="db_easybarModel.Pedidos">
+              <MappingFragment StoreEntitySet="Pedidos">
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_bar" ColumnName="id_bar" />
+                <ScalarProperty Name="valor_pedido" ColumnName="valor_pedido" />
+                <ScalarProperty Name="estado_pedido" ColumnName="estado_pedido" />
+                <ScalarProperty Name="descripcion_pedido" ColumnName="descripcion_pedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto">
+            <EntityTypeMapping TypeName="db_easybarModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_bar" ColumnName="id_bar" />
+                <ScalarProperty Name="producto_especial" ColumnName="producto_especial" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+                <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="imagen_producto" ColumnName="imagen_producto" />
+                <ScalarProperty Name="estado_producto" ColumnName="estado_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="publicidad">
+            <EntityTypeMapping TypeName="db_easybarModel.publicidad">
+              <MappingFragment StoreEntitySet="publicidad">
+                <ScalarProperty Name="id_publicidad" ColumnName="id_publicidad" />
+                <ScalarProperty Name="id_bar" ColumnName="id_bar" />
+                <ScalarProperty Name="nombre_publicidad" ColumnName="nombre_publicidad" />
+                <ScalarProperty Name="tiempo_publicidad" ColumnName="tiempo_publicidad" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="Imagen_publicidad" ColumnName="Imagen_publicidad" />
+                <ScalarProperty Name="Estado_publicidad" ColumnName="Estado_publicidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="db_easybarModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="Tipo_rol" ColumnName="Tipo_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

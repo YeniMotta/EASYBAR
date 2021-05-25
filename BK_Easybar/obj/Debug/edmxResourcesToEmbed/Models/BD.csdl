@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_easybarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="administrador_bar">
+    <Key>
+      <PropertyRef Name="id_admin" />
+    </Key>
+    <Property Name="id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_rol" Type="Int32" Nullable="false" />
+    <Property Name="cedula_a" Type="Int32" Nullable="false" />
+    <Property Name="nombre_completo_a" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo_a" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono_a" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contraseña_a" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_adicion_a" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado_admin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK__administr__id_ro__440B1D61" FromRole="administrador_bar" ToRole="Rol" />
+    <NavigationProperty Name="bar" Relationship="Self.FK__bar__id_admin__47DBAE45" FromRole="administrador_bar" ToRole="bar" />
+  </EntityType>
+  <EntityType Name="bar">
+    <Key>
+      <PropertyRef Name="id_bar" />
+    </Key>
+    <Property Name="id_bar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_admin" Type="Int32" Nullable="false" />
+    <Property Name="nit_bar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre_bar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion_bar" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono_bar1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono_bar2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Logo_bar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="link_washap" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="link_facebook" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="link_instagram" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo_b" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="estado_bar" Type="Boolean" Nullable="false" />
+    <Property Name="Horario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_adicion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="administrador_bar" Relationship="Self.FK__bar__id_admin__47DBAE45" FromRole="bar" ToRole="administrador_bar" />
+    <NavigationProperty Name="Pedidos" Relationship="Self.FK__Pedidos__id_bar__52593CB8" FromRole="bar" ToRole="Pedidos" />
+    <NavigationProperty Name="producto" Relationship="Self.FK__producto__id_bar__4D94879B" FromRole="bar" ToRole="producto" />
+    <NavigationProperty Name="publicidad" Relationship="Self.FK__publicida__id_ba__5629CD9C" FromRole="bar" ToRole="publicidad" />
+  </EntityType>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_rol" Type="Int32" Nullable="false" />
+    <Property Name="cedula" Type="Int32" Nullable="false" />
+    <Property Name="nombre_completo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Barrio_localidad" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contraseña" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_adicion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado_cliente" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK__cliente__id_rol__403A8C7D" FromRole="cliente" ToRole="Rol" />
+    <NavigationProperty Name="Pedidos" Relationship="Self.FK__Pedidos__id_clie__5165187F" FromRole="cliente" ToRole="Pedidos" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="id_pedido" />
+    </Key>
+    <Property Name="id_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_bar" Type="Int32" Nullable="false" />
+    <Property Name="valor_pedido" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="estado_pedido" Type="Boolean" Nullable="false" />
+    <Property Name="descripcion_pedido" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="bar" Relationship="Self.FK__Pedidos__id_bar__52593CB8" FromRole="Pedidos" ToRole="bar" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK__Pedidos__id_clie__5165187F" FromRole="Pedidos" ToRole="cliente" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_bar" Type="Int32" Nullable="false" />
+    <Property Name="producto_especial" Type="Boolean" />
+    <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="categoria" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion_producto" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="disponibilidad" Type="Boolean" Nullable="false" />
+    <Property Name="cantidad" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="precio" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imagen_producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="estado_producto" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="bar" Relationship="Self.FK__producto__id_bar__4D94879B" FromRole="producto" ToRole="bar" />
+  </EntityType>
+  <EntityType Name="publicidad">
+    <Key>
+      <PropertyRef Name="id_publicidad" />
+    </Key>
+    <Property Name="id_publicidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_bar" Type="Int32" Nullable="false" />
+    <Property Name="nombre_publicidad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="tiempo_publicidad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Mensaje" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="valor" Type="Int32" />
+    <Property Name="Imagen_publicidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Estado_publicidad" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="bar" Relationship="Self.FK__publicida__id_ba__5629CD9C" FromRole="publicidad" ToRole="bar" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo_rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="administrador_bar" Relationship="Self.FK__administr__id_ro__440B1D61" FromRole="Rol" ToRole="administrador_bar" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK__cliente__id_rol__403A8C7D" FromRole="Rol" ToRole="cliente" />
+  </EntityType>
+  <Association Name="FK__administr__id_ro__440B1D61">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="administrador_bar" Type="Self.administrador_bar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="administrador_bar">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bar__id_admin__47DBAE45">
+    <End Role="administrador_bar" Type="Self.administrador_bar" Multiplicity="1" />
+    <End Role="bar" Type="Self.bar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="administrador_bar">
+        <PropertyRef Name="id_admin" />
+      </Principal>
+      <Dependent Role="bar">
+        <PropertyRef Name="id_admin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedidos__id_bar__52593CB8">
+    <End Role="bar" Type="Self.bar" Multiplicity="1" />
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bar">
+        <PropertyRef Name="id_bar" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="id_bar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__producto__id_bar__4D94879B">
+    <End Role="bar" Type="Self.bar" Multiplicity="1" />
+    <End Role="producto" Type="Self.producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bar">
+        <PropertyRef Name="id_bar" />
+      </Principal>
+      <Dependent Role="producto">
+        <PropertyRef Name="id_bar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__publicida__id_ba__5629CD9C">
+    <End Role="bar" Type="Self.bar" Multiplicity="1" />
+    <End Role="publicidad" Type="Self.publicidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bar">
+        <PropertyRef Name="id_bar" />
+      </Principal>
+      <Dependent Role="publicidad">
+        <PropertyRef Name="id_bar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cliente__id_rol__403A8C7D">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="cliente">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedidos__id_clie__5165187F">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_easybarEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="administrador_bar" EntityType="Self.administrador_bar" />
+    <EntitySet Name="bar" EntityType="Self.bar" />
+    <EntitySet Name="cliente" EntityType="Self.cliente" />
+    <EntitySet Name="Pedidos" EntityType="Self.Pedidos" />
+    <EntitySet Name="producto" EntityType="Self.producto" />
+    <EntitySet Name="publicidad" EntityType="Self.publicidad" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <AssociationSet Name="FK__administr__id_ro__440B1D61" Association="Self.FK__administr__id_ro__440B1D61">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="administrador_bar" EntitySet="administrador_bar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bar__id_admin__47DBAE45" Association="Self.FK__bar__id_admin__47DBAE45">
+      <End Role="administrador_bar" EntitySet="administrador_bar" />
+      <End Role="bar" EntitySet="bar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedidos__id_bar__52593CB8" Association="Self.FK__Pedidos__id_bar__52593CB8">
+      <End Role="bar" EntitySet="bar" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__producto__id_bar__4D94879B" Association="Self.FK__producto__id_bar__4D94879B">
+      <End Role="bar" EntitySet="bar" />
+      <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__publicida__id_ba__5629CD9C" Association="Self.FK__publicida__id_ba__5629CD9C">
+      <End Role="bar" EntitySet="bar" />
+      <End Role="publicidad" EntitySet="publicidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cliente__id_rol__403A8C7D" Association="Self.FK__cliente__id_rol__403A8C7D">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="cliente" EntitySet="cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedidos__id_clie__5165187F" Association="Self.FK__Pedidos__id_clie__5165187F">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

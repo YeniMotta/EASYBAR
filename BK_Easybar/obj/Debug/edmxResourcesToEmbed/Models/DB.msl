@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbeasybar_vModelStoreContainer" CdmEntityContainer="dbeasybar_vEntities">
+    <EntitySetMapping Name="administrador_bar">
+      <EntityTypeMapping TypeName="dbeasybar_vModel.administrador_bar">
+        <MappingFragment StoreEntitySet="administrador_bar">
+          <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="cedula_a" ColumnName="cedula_a" />
+          <ScalarProperty Name="nombre_completo_a" ColumnName="nombre_completo_a" />
+          <ScalarProperty Name="correo_a" ColumnName="correo_a" />
+          <ScalarProperty Name="Telefono_a" ColumnName="Telefono_a" />
+          <ScalarProperty Name="contraseña_a" ColumnName="contraseña_a" />
+          <ScalarProperty Name="fecha_adicion_a" ColumnName="fecha_adicion_a" />
+          <ScalarProperty Name="estado_admin" ColumnName="estado_admin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bar">
+      <EntityTypeMapping TypeName="dbeasybar_vModel.bar">
+        <MappingFragment StoreEntitySet="bar">
+          <ScalarProperty Name="id_bar" ColumnName="id_bar" />
+          <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+          <ScalarProperty Name="nombre_bar" ColumnName="nombre_bar" />
+          <ScalarProperty Name="Direccion_bar" ColumnName="Direccion_bar" />
+          <ScalarProperty Name="Telefono_bar" ColumnName="Telefono_bar" />
+          <ScalarProperty Name="Logo_bar" ColumnName="Logo_bar" />
+          <ScalarProperty Name="link_washap" ColumnName="link_washap" />
+          <ScalarProperty Name="link_facebook" ColumnName="link_facebook" />
+          <ScalarProperty Name="link_instagram" ColumnName="link_instagram" />
+          <ScalarProperty Name="correo_b" ColumnName="correo_b" />
+          <ScalarProperty Name="estado_bar" ColumnName="estado_bar" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="fecha_adicion" ColumnName="fecha_adicion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="dbeasybar_vModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="Barrio_localidad" ColumnName="Barrio_localidad" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="fecha_adicion" ColumnName="fecha_adicion" />
+          <ScalarProperty Name="estado_cliente" ColumnName="estado_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturacion">
+      <EntityTypeMapping TypeName="dbeasybar_vModel.facturacion">
+        <MappingFragment StoreEntitySet="facturacion">
+          <ScalarProperty Name="id_factura" ColumnName="id_factura" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="id_bar" ColumnName="id_bar" />
+          <ScalarProperty Name="valor_pagado" ColumnName="valor_pagado" />
+          <ScalarProperty Name="estado_facturacion" ColumnName="estado_facturacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producto">
+      <EntityTypeMapping TypeName="dbeasybar_vModel.producto">
+        <MappingFragment StoreEntitySet="producto">
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="id_bar" ColumnName="id_bar" />
+          <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+          <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+          <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="imagen_producto" ColumnName="imagen_producto" />
+          <ScalarProperty Name="estado_producto" ColumnName="estado_producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="publicidad">
+      <EntityTypeMapping TypeName="dbeasybar_vModel.publicidad">
+        <MappingFragment StoreEntitySet="publicidad">
+          <ScalarProperty Name="id_publicidad" ColumnName="id_publicidad" />
+          <ScalarProperty Name="id_bar" ColumnName="id_bar" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="Imagen_publicidad" ColumnName="Imagen_publicidad" />
+          <ScalarProperty Name="Estado_publicidad" ColumnName="Estado_publicidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rol">
+      <EntityTypeMapping TypeName="dbeasybar_vModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="Tipo_rol" ColumnName="Tipo_rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
