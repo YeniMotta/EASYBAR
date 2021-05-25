@@ -16,7 +16,7 @@ namespace BK_Easybar.Models
     public partial class db_easybarEntities : DbContext
     {
         public db_easybarEntities()
-            : base("name=db_easybarEntities")
+            : base("name=BK_Easybar_db")
         {
         }
     
