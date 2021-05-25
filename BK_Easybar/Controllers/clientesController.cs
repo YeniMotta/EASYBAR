@@ -15,10 +15,16 @@ using System.Web.Http.Cors;
 namespace BK_Easybar.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+     [AllowAnonymous]
     public class clientesController : ApiController
     {
         private db_easybarEntities db = new db_easybarEntities();
-
+        
+        [HttpGet]
+        public IHttpActionResult HearBeat()
+        {
+            return Ok(true);
+        }
         // GET: api/clientes
        [HttpGet]
         public  List<cliente_dto> consultarTodos()
